@@ -7,5 +7,5 @@ app.use(routes)
 
 
 app.listen(process.env.PORT, () => {
-    console.log("Listening on port 3001 ............");
+    console.log("Listening on port 3000 ............");
 })
