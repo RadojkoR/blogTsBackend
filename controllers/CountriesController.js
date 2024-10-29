@@ -1,11 +1,11 @@
 const { json } = require('express');
 const db = require('../database/config');
 
-const getCountriesByContinent = async(res,req) => {
+const getCountriesByContinent = async(req,res) => {
     // const{continent} = req.params;
     try {
-         const [countryData] = await db.query("select * from country");;
-        res,json(countryData)
+         const [countryData] = await db.query("select * from country");
+        res.json(countryData)
         console.log("country Data", countryData);
         
     }catch(error){
