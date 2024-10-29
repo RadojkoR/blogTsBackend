@@ -4,7 +4,7 @@ const db = require('../database/config');
 const getCountriesByContinent = async(res,req) => {
     const{continent} = req.params;
     try {
-        const [countries] = await db.query("SELECT * FROM country WHERE continents = ?", [continent]);
+        const [countries] = await db.query("SELECT * FROM country WHERE continents_id = ?", [continent]);
         res,json(countries)
     }catch(error){
         console.error("Error Fetching Countries:", error);
