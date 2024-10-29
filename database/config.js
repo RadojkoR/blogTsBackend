@@ -18,4 +18,12 @@ const db = mysql2.createPool({
 // }).promise();
 
 
+//  const db = mysql2.createConnection({
+//     host: "localhost",
+//     user: "root",
+//     password: "",
+//     database: "newblogdb",
+// }).promise();
+
+
 module.exports = db;
