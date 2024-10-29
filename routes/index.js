@@ -8,6 +8,6 @@ const router = express();
 router.use(cors());
 
 router.get("/",HomeController.index);
-router.get("/destination/:continent", CountriesController.getCountriesByContinent);
+router.get("/destination", CountriesController.getCountriesByContinent);
 
 module.exports = router
