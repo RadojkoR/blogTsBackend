@@ -4,7 +4,7 @@ const db = require('../database/config');
 const index = async(req,res) => {
     try {
          const [blogData] = await db.query("select * from blogs");
-        res.json(countryData)
+        res.json(blogData)
         console.log("blogs Data", blogData);
         
     }catch(error){
