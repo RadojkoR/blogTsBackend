@@ -18,7 +18,7 @@ const index = async(req,res) => {
 
 //Create New Blog
 const createNewBlog = async(req,res) => {
-    const {title, content, continent_id, country_id} = req.body;
+    const {title, content, continent_id, country_id, author_id} = req.body;
      console.log("Received data:", { title, content, continent_id, country_id });
     try{
         const [result] = await db.query("INSERT INTO blog_posts (title, content, continent_id, country_id, author_id) VALUES (?, ?, ?, ?, ?)", [title, content, continent_id, country_id, author_id]);
