@@ -6,8 +6,8 @@ const index = async (req, res) => {
         const [countyData] = await db.query("select * from country");
         const [blogsData] = await db.query("select * from blogs");
         const [blog_posts] = await db.query("select * from blog_posts");
-        console.log({adminData,continentsData,countyData,blogsData});
-        res.json({adminData, continentsData, countyData, blogsData});
+        console.log({adminData,continentsData,countyData,blogsData, blog_posts});
+        res.json({adminData, continentsData, countyData, blogsData, blog_posts});
     } catch(error){
         console.error("Error connecting to database:", error);
         res.status(500).json({message: "Database connection error"})
