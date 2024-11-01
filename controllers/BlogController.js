@@ -33,7 +33,7 @@ const createNewBlog = async(req,res) => {
 
 const getSingelBlog = async(req,res) => {
     try{
-        const [post] = await db.query("SELECT * FROM blog_post WHERE post_id = ?", [id]);
+        const [post] = await db.query("SELECT * FROM blog_posts WHERE post_id = ?", [id]);
         if(post.length === 0) {
             return res.status(404).json({message: "Blog post not found"});
         }
@@ -51,7 +51,7 @@ const edit = async (req,res) => {
     const {id} = req.params;
     const {post_id,title, content, continent_id, country_id, author_id, } = req.body;
     try{
-        const [result] = await db.query("UPDATE blog_posts SET title = ?, content = ?, continent_id = ?, country_id = ?, author_id = ?, WHERE post_id = ?", [title, content, continent_id, country_id, author_id, id]);
+        const [result] = await db.query("UPDATE blog_posts SET title = ?, content = ?, continent_id = ?, country_id = ?, author_id = ? WHERE post_id = ?", [title, content, continent_id, country_id, author_id, id]);
 
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "Blog post not found" });
@@ -69,13 +69,13 @@ const deleteBlog = async(req,res) => {
     const {id} = req.params;
     try{
         const [result] =await db.query("DELETE FROM blog_posts WHERE post_id = ?", [id])
-    }catch(error){
-        console.error("Error deleting blog post", error);
-        res.status(500).json({message: "Database error"});
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "Blog post not found" });
         }
         res.status(204).send()
+    }catch(error){
+        console.error("Error deleting blog post", error);
+        res.status(500).json({message: "Database error"});    
     }
 }
 
