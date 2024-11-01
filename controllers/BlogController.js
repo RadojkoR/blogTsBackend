@@ -22,10 +22,10 @@ const createNewBlog = async(req,res) => {
      console.log("Received data:", { title, content, continent_id, country_id });
     try{
         const [result] = await db.query("INSERT INTO blog_posts (title, content, continent_id, country_id, author_id) VALUES (?, ?, ?, ?, ?)", [title, content, continent_id, country_id, author_id]);
-        res.status(201).json({ id: result.insertId, title, content, continent_id, country_id, author_id });
+        res.status(201).json({ blogId: result.insertId});
     } catch (error) {
         console.error("Error creating blog post:", error);
-        res.status(500).json({ message: "Database connection error" });
+        res.status(500).json({ message: "Database connection error", error: error.message });
     }
 }
 
