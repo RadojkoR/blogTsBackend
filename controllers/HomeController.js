@@ -6,6 +6,8 @@ const index = async (req, res) => {
         const [countyData] = await db.query("select * from country");
         const [blogsData] = await db.query("select * from blogs");
         const [blogPostsData] = await db.query("select * from blog_posts");
+        console.log("Blog Posts Data", blogPostsData);
+        
         console.log({adminData,continentsData,countyData,blogsData, blogPostsData});
         res.json({adminData, continentsData, countyData, blogsData, blogPostsData});
     } catch(error){
