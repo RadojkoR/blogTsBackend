@@ -12,7 +12,7 @@ const index = async(req,res) => {
     }
 }
 
-// create New Continent
+// Create New Continent
 const create = async(req, res) => {
     const {continent_name, continent_img} = req.body;
     try{
@@ -21,10 +21,10 @@ const create = async(req, res) => {
         res.json({continentId: result.insertId});
     }catch(error){
         console.error("Error creating continent", error);
-        res.status(500).json({message: "database conection error"})
-        
+        res.status(500).json({message: "database conection error"});  
     }
 }
+
 
 //Delete Continent
 const deleteContinent = async(req, res) => {

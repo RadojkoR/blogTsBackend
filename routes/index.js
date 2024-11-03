@@ -10,7 +10,7 @@ const router = express();
 router.use(cors());
 
 router.get("/",HomeController.index);
-router.get("/destination", CountriesController.getCountriesByContinent);
+router.get("/countries", CountriesController.index);
 router.get("/blogs", BlogController.index);
 router.post("/blogs", BlogController.createNewBlog);
 router.get("/blogs/:id", BlogController.getSingelBlog);
