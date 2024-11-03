@@ -18,7 +18,7 @@ const create = async(req, res) => {
     console.log("recive create continent data", {continent_name, continent_img});
     
     try{
-        const [result]= await db.query("INSERT INTO continent (continent_name, continent_img) VALUES (?,?)", [continent_name, continent_img]);
+        const [result]= await db.query("INSERT INTO continents (continent_name, continent_img) VALUES (?,?)", [continent_name, continent_img]);
         console.log("create continent result", result);
         
         res.json({continentId: result.insertId});
