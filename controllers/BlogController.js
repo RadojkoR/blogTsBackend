@@ -6,8 +6,7 @@ const db = require('../database/config');
 const index = async(req,res) => {
     try {
         const [posts] = await db.query("select * from blog_posts");
-        res.json(posts)
-        console.log("blog_posts Data", posts);
+        res.json(posts);
         
     }catch(error){
         console.error("Error Fetching Countries:", error);
@@ -35,6 +34,7 @@ const getSingelBlog = async(req,res) => {
     const {id} = req.params;
     try{
         const [post] = await db.query("SELECT * FROM blog_posts WHERE post_id = ?", [id]);
+        console.log("Post result:", post);
         if(post.length === 0) {
             return res.status(404).json({message: "Blog post not found"});
         }
