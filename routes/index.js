@@ -17,6 +17,6 @@ router.get("/blogs/:id", BlogController.getSingelBlog);
 router.put("/blogs/:id", BlogController.edit);
 router.delete("/blogs/:id", BlogController.deleteBlog);
 router.get("/continents", ContinentsController.index);
-router.post("continents",ContinentsController.create);
+router.post("/continents",ContinentsController.create);
 
 module.exports = router
