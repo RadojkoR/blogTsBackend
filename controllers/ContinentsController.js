@@ -29,7 +29,24 @@ const create = async(req, res) => {
     }
 }
 
+//Delete Continent
+const deleteContinent = async(req, res) => {
+    const {id} = req.params;
+    try{
+        const [result]= await db.query("DELETE FROM continents WHERE continent_id = ?", [id]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ message: "Continent not found" });
+        }
+        res.status(204).send()
+    }catch(error){
+        console.error("Error deleting continent", error);
+        res.status(500).json({message: "Database conenction error"})
+        
+    }
+}
+
 module.exports = {
     index,
-    create
+    create,
+    deleteContinent
 }
