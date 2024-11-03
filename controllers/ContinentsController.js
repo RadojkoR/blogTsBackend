@@ -1,4 +1,4 @@
-const db = require('../database/config.js');
+const db = require('../database/config');
 
 const index = async(req,res) => {
     try{
