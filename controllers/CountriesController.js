@@ -1,4 +1,4 @@
-const { json } = require('express');
+
 const db = require('../database/config');
 
 const getCountriesByContinent = async(req,res) => {

@@ -1,4 +1,4 @@
-const { json } = require('express');
+
 const db = require('../database/config');
 
 //NOVI BLOG KONTROLER IZ NOVE BAZE
