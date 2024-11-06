@@ -20,7 +20,7 @@ const create = async(req, res) => {
     const continent_img = req.file ? req.file.filename : null;
 
     console.log('Received data:', req.body); 
-    console.log('Received data:', req.body);// Ovo će prikazati podatke koji dolaze u POST zahtevu
+    console.log('Received file:', req.file);// Ovo će prikazati podatke koji dolaze u POST zahtevu
     if (!continent_name || !continent_img) {
         return res.status(400).json({ message: "Continent name is required." });
     }
