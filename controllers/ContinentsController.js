@@ -14,14 +14,14 @@ const index = async(req,res) => {
 
 // Create New Continent
 const create = async(req, res) => {
-    const {continent_name, continent_img} = req.body;
-     if (!continent_name || !continent_img) {
+    const {continent_name} = req.body;
+     if (!continent_name) {
     return res.status(400).json({ message: "Continent name and image are required." });
   }
     try{
-        const [result]= await db.query("INSERT INTO continents (continent_name, continent_img) VALUES (?,?)", [continent_name, continent_img]);
+        const [result]= await db.query("INSERT INTO continents (continent_name) VALUES (?,?)", [continent_name]);
         
-        res.json({continentId: result.insertId, continent_name, continent_img});
+        res.json({continentId: result.insertId, continent_name});
     }catch(error){
         console.error("Error creating continent", error);
         res.status(500).json({message: "database conection error"});
