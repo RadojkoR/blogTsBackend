@@ -1,6 +1,4 @@
 const db = require('../database/config');
-const multer = require('multer')
-const path = require('path');
 
 const index = async(req,res) => {
     try{
@@ -16,11 +14,8 @@ const index = async(req,res) => {
 
 // Create New Continent
 const create = async(req, res) => {
-    const { continent_name} = req.body;
-    const continent_img = req.file ? req.file.filename : null;
-
-    console.log('Received data:', req.body); 
-    console.log('Received data:', req.body);// Ovo će prikazati podatke koji dolaze u POST zahtevu
+    const { continent_name, continent_img} = req.body;
+    console.log('Received data:', req.body); // Ovo će prikazati podatke koji dolaze u POST zahtevu
     if (!continent_name || !continent_img) {
         return res.status(400).json({ message: "Continent name is required." });
     }
