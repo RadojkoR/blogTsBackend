@@ -8,8 +8,8 @@ const ContinentsController = require("../controllers/ContinentsController");
 const router = express();
 
 router.use(cors());
-
-app.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.get("/",HomeController.index);
 
