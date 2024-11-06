@@ -22,6 +22,7 @@ const create = async(req, res) => {
     }catch(error){
         console.error("Error creating continent", error);
         res.status(500).json({message: "database conection error"});  
+        res.redirect('/createBlog')
     }
 }
 

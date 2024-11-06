@@ -11,8 +11,8 @@ router.use(cors());
 
 router.get("/",HomeController.index);
 
-router.get("/continents", require('./continents-route'));
-router.post("/continents",ContinentsController.create);
+router.use("/continents", require('./continents-route'));
+router.use("/continents",require('./continents-route'));
 router.delete("/continents/:id", ContinentsController.deleteContinent);
 
 router.get("/countries", CountriesController.index);
