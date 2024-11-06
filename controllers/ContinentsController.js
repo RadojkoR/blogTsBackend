@@ -16,10 +16,10 @@ const index = async(req,res) => {
 const create = async(req, res) => {
     const {continent_name} = req.body;
      if (!continent_name) {
-    return res.status(400).json({ message: "Continent name and image are required." });
+    return res.status(400).json({ message: "Continent name is required." });
   }
     try{
-        const [result]= await db.query("INSERT INTO continents (continent_name) VALUES (?,?)", [continent_name]);
+        const [result]= await db.query("INSERT INTO continents (continent_name) VALUES (?)", [continent_name]);
         
         res.json({continentId: result.insertId, continent_name});
     }catch(error){
