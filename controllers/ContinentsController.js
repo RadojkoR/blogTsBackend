@@ -16,16 +16,10 @@ const index = async(req,res) => {
 
 // Create New Continent
 const create = async(req, res) => {
-    const {continent_name} = req.body;
-    const continent_img = req.file ? req.file.name : null;
-
-    console.log('Received data:', req.body); 
-    console.log('Received file:', req.file.name);// Ovo će prikazati podatke koji dolaze u POST zahtevu
+    const { continent_name, continent_img} = req.body;
+    console.log('Received data:', req.body); // Ovo će prikazati podatke koji dolaze u POST zahtevu
     if (!continent_name || !continent_img) {
         return res.status(400).json({ message: "Continent name is required." });
-    }
-    if (!continent_img) {
-        return res.status(400).json({ message: "Continent imahge is required." });
     }
     try {
         const [result] = await db.query("INSERT INTO continents (continent_name, continent_img) VALUES (?, ?)", [continent_name, continent_img]);
