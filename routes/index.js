@@ -9,10 +9,11 @@ const router = express();
 
 router.use(cors());
 
+app.use(express.urlencoded({ extended: true }));
+
 router.get("/",HomeController.index);
 
 router.use("/continents", require('./continents-route'));
-router.use("/continents",require('./continents-route'));
 router.delete("/continents/:id", ContinentsController.deleteContinent);
 
 router.get("/countries", CountriesController.index);
