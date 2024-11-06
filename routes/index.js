@@ -14,7 +14,7 @@ router.use(express.urlencoded({ extended: true }));
 router.get("/",HomeController.index);
 
 router.use("/continents", require('./continents-route'));
-router.delete("/continents/:id", ContinentsController.deleteContinent);
+router.use("/continents/:id", require('./continents-route'));
 
 router.get("/countries", CountriesController.index);
 
