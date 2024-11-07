@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     cb(null, "/home/radojko/blog/images/"); // Folder u koji će se fajlovi sačuvati
   },
   filename: (req, file, cb) => {
-    cb(null, Date.now() + path.extname(file.originalname)); // Dodajemo jedinstveno ime fajlu
+    cb(null, file.originalname); // Dodajemo jedinstveno ime fajlu
   },
 });
 
