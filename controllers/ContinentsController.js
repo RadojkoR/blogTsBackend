@@ -1,6 +1,7 @@
 const db = require('../database/config');
 const multer = require('multer')
 const path = require('path');
+const upload = multer({ dest: 'uploads/' });
 
 const index = async(req,res) => {
     try{
@@ -17,7 +18,16 @@ const index = async(req,res) => {
 // Create New Continent
 const create = async(req, res) => {
     const { continent_name, continent_img} = req.body;
-    console.log('Received data:', req.body); // Ovo će prikazati podatke koji dolaze u POST zahtevu
+    const imgFile = req.imgFile;
+    console.log('Received data:',continent_name, imgFile); // Ovo će prikazati podatke koji dolaze u POST zahtevu
+
+     if (imgFile) {
+    // Dodatne operacije sa fajlom
+    res.status(200).json({ message: 'Continent added successfully!' });
+  } else {
+    res.status(400).json({ message: 'Image file missing' });
+  }
+
     if (!continent_name || !continent_img) {
         return res.status(400).json({ message: "Continent name is required." });
     }
