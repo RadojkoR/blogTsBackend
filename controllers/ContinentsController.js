@@ -8,7 +8,7 @@ const uploadDir = path.join(__dirname, "uploads");
 // Konfigurišite multer za čuvanje fajlova
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "/home/radojko/blog/images/"); // Folder u koji će se fajlovi sačuvati
+    cb(null, "/home/radojko/blog/public/images/"); // Folder u koji će se fajlovi sačuvati
   },
   filename: (req, file, cb) => {
     cb(null, file.originalname); // Dodajemo jedinstveno ime fajlu
