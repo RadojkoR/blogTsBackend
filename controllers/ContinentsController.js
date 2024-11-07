@@ -32,7 +32,7 @@ const index = async (req, res) => {
 // Kreiranje novog kontinenta
 const create = async (req, res) => {
   const { continent_name } = req.body;
-  const continent_img = req.file ? req.file.filename : null;
+  const continent_img = req.file ? `/images/${req.file.filename}` : null;
 
   console.log("Received data:", req.body, req.file); // Prikazuje podatke i fajl
 
