@@ -1,11 +1,18 @@
 const db = require("../database/config");
 const multer = require("multer");
+const fs = require("fs");
 const path = require("path");
+
+const uploadDir = path.join(__dirname, "uploads");
+
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // Konfigurišite multer za čuvanje fajlova
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); // Folder u koji će se fajlovi sačuvati
+    cb(null, "/home/radojko/blog/images/"); // Folder u koji će se fajlovi sačuvati
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + path.extname(file.originalname)); // Dodajemo jedinstveno ime fajlu
