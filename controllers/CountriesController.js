@@ -3,6 +3,17 @@ const multer = require("multer");
 const fs = require('fs');
 const path = require("path");
 
+const storage = multer.diskStorage({
+    destination: (req, file ,cd) => {
+        cd(null,"/home/radojko/blog/public/images/");
+    },
+    filename: (req, file, cd) => {
+        cd(null, file.originalname);
+    }
+});
+
+const upload = multer({storage: storage})
+
 
 const index = async(req,res) => {
     // const{continent} = req.params;
@@ -27,7 +38,7 @@ const create = async (req,res) => {
     
     try{
         const [result]= await db.query("INSERT INTO country (continent_id, country_name, country_img) VALUES (?,?,?)", [continent_id, country_name, country_img]);
-        res.json({countryId: result.insertId,continent_id, country_name, country_img})
+        res.json({countryId: result.insertId, continent_id, country_name, country_img})
     }catch(error){
         console.error("Error creating Country", error);
         res.status(500).json({message: "Database Countries connection error"});
@@ -37,5 +48,5 @@ const create = async (req,res) => {
 
 module.exports = {
     index,
-    create
+    create: [upload.single("imgFile"), create]
 }

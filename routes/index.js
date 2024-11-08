@@ -14,7 +14,7 @@ router.get("/",HomeController.index);
 router.use("/continents", require('./continents-route'));
 router.use("/continents/:id", require('./continents-route'));
 
-router.use("/countries", require('./countries-route'))
+router.use("/countries", require('./countries-route'));
 
 router.get("/blogs", BlogController.index);
 router.post("/blogs", BlogController.createNewBlog);
