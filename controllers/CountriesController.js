@@ -22,7 +22,7 @@ const create = async (req,res) => {
     console.log("before bd call");
     
     try{
-        const [result]= await db.query("INSERT INTO country (continent_id, country_name, country_img) VALUES (?,?)", [continent_id, country_name, country_img]);
+        const [result]= await db.query("INSERT INTO country (continent_id, country_name, country_img) VALUES (?,?,?)", [continent_id, country_name, country_img]);
         res.json({countryId: result.insertId,continent_id, country_name, country_img})
     }catch(error){
         console.error("Error creating Country", error);
