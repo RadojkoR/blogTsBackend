@@ -3,9 +3,7 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 
-const uploadDir = path.join(__dirname, "uploads");
-
-// Konfigurišite multer za čuvanje fajlova
+// multer for storing files
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "/home/radojko/blog/public/images/"); // Folder u koji će se fajlovi sačuvati
