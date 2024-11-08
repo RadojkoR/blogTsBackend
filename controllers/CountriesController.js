@@ -32,7 +32,8 @@ const index = async(req,res) => {
 
 // Create New Country
 const create = async (req,res) => {
-    const {continent_id, country_name, country_img} = req.body;
+    const {continent_id, country_name} = req.body;
+    const country_img = req.file ? `/images/${req.file.filename}` : null;
     
     console.log("Received data:", req.body, req.file); // Prikazuje podatke i fajl
     
