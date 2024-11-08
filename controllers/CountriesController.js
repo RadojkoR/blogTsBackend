@@ -48,5 +48,5 @@ const create = async (req,res) => {
 
 module.exports = {
     index,
-    create: [upload.single("imgFile"), create]
+    create: [upload.single("countryImgFile"), create]
 }
