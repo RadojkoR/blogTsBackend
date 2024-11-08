@@ -1,5 +1,8 @@
-
 const db = require('../database/config');
+const multer = require("multer");
+const fs = require('fs');
+const path = require("path");
+
 
 const index = async(req,res) => {
     // const{continent} = req.params;
@@ -19,7 +22,8 @@ const index = async(req,res) => {
 // Create New Country
 const create = async (req,res) => {
     const {continent_id, country_name, country_img} = req.body;
-    console.log("before bd call");
+    
+    console.log("Received data:", req.body, req.file); // Prikazuje podatke i fajl
     
     try{
         const [result]= await db.query("INSERT INTO country (continent_id, country_name, country_img) VALUES (?,?,?)", [continent_id, country_name, country_img]);
