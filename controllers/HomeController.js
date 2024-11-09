@@ -15,12 +15,6 @@ const index = async (req, res) => {
         res.status(500).json({message: "Database connection error"})
         
     }
-    
-    // db.query("SELECT * FROM admin_data", (err, data)=>{
-    //     console.log(data);
-        
-    //     res.send(data);
-    // });
 }
 
 module.exports = {

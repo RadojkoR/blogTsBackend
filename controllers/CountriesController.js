@@ -12,23 +12,22 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage: storage})
+const upload = multer({storage: storage});
 
 
 const index = async(req,res) => {
-    // const{continent} = req.params;
     try {
          const [countryData] = await db.query("select * from country");
-        res.json(countryData)
+        res.json(countryData);
         console.log("country Data", countryData);
         
     }catch(error){
         console.error("Error Fetching Countries:", error);
-        res.status(500).json({message: "Database connection error"})
+        res.status(500).json({message: "Database connection error"});
         
-    }
+    };
     
-}
+};
 
 // Create New Country
 const create = async (req,res) => {
@@ -39,15 +38,31 @@ const create = async (req,res) => {
     
     try{
         const [result]= await db.query("INSERT INTO country (continent_id, country_name, country_img) VALUES (?,?,?)", [continent_id, country_name, country_img]);
-        res.json({countryId: result.insertId, continent_id, country_name, country_img})
+        res.json({countryId: result.insertId, continent_id, country_name, country_img});
     }catch(error){
         console.error("Error creating Country", error);
         res.status(500).json({message: "Database Countries connection error"});
         
-    }
-}
+    };
+};
+
+//Delete Country
+const deleteCountry = async (req,res) => {
+    const {id }= req.params;
+    try {
+        const [reuslt] = await db.query("DELETE FROM country WHERE country_id = ?", [id]);
+        if(result.affectedRows === 0){
+            return res.status(404).json({message: "Country not found"});
+        }
+        res.status(204).send();
+    }catch(error){
+        console.error("Error Deleting Country", error);
+        res.status(500).json({message: "Database connention error"});       
+    };
+};
 
 module.exports = {
     index,
-    create: [upload.single("countryImgFile"), create]
+    create: [upload.single("countryImgFile"), create],
+    deleteCountry
 }
