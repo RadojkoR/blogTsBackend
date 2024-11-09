@@ -50,7 +50,7 @@ const create = async (req,res) => {
 const deleteCountry = async (req,res) => {
     const {id }= req.params;
     try {
-        const [reuslt] = await db.query("DELETE FROM country WHERE country_id = ?", [id]);
+        const [result] = await db.query("DELETE FROM country WHERE country_id = ?", [id]);
         if(result.affectedRows === 0){
             return res.status(404).json({message: "Country not found"});
         }
