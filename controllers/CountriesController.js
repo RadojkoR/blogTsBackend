@@ -48,7 +48,7 @@ const create = async (req,res) => {
 
 //Delete Country
 const deleteCountry = async (req,res) => {
-    const {id }= req.params;
+    const { id }= req.params;
     try {
         const [result] = await db.query("DELETE FROM country WHERE country_id = ?", [id]);
         if(result.affectedRows === 0){
