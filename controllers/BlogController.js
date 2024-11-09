@@ -17,10 +17,10 @@ const index = async(req,res) => {
 
 //Create New Blog
 const create = async(req,res) => {
-    const {title, continent_id, country_id, author_id} = req.body;
-     console.log("Received data:", { title, continent_id, country_id });
+    const {title, content, continent_id, country_id, author_id} = req.body;
+     console.log("Received data:", { title, content, continent_id, country_id });
     try{
-        const [result] = await db.query("INSERT INTO blog_posts (title, continent_id, country_id, author_id) VALUES (?, ?, ?, ?)", [title, continent_id, country_id, author_id]);
+        const [result] = await db.query("INSERT INTO blog_posts (title, content, continent_id, country_id, author_id) VALUES (?, ?, ?, ?, ?)", [title, content, continent_id, country_id, author_id]);
         res.status(201).json({ blogId: result.insertId});
     } catch (error) {
         console.error("Error creating blog post:", error);
