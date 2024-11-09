@@ -29,7 +29,6 @@ const createNewBlog = async(req,res) => {
 }
 
 //Get a single blog post by id
-
 const getSingelBlog = async(req,res) => {
     const {id} = req.params;
     try{
