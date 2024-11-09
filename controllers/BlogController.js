@@ -16,7 +16,7 @@ const index = async(req,res) => {
 }
 
 //Create New Blog
-const createNewBlog = async(req,res) => {
+const create = async(req,res) => {
     const {title, content, continent_id, country_id, author_id} = req.body;
      console.log("Received data:", { title, content, continent_id, country_id });
     try{
@@ -94,7 +94,7 @@ const deleteBlog = async(req,res) => {
 
 module.exports = {
     index,
-    createNewBlog,
+    create,
     getSingelBlog,
     edit,
     deleteBlog
