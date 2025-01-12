@@ -111,11 +111,11 @@ const deleteBlog = async(req,res) => {
 // };
 
 const getBlogsByCountry = async (req, res) => {
-    const { id } = req.params;
-    console.log(id);
+    const { country_id } = req.params;
+    console.log(country_id);
     
     try {
-        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id]);
+        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
         console.log("Post result:", post);
         if (post.length === 0) {
             return res.status(404).json({ message: "Blog post not found" });
