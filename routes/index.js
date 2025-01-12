@@ -17,9 +17,9 @@ router.use("/continents", require('./continents-route'));
 router.use("/countries", require('./countries-route'));
 
 router.use("/blogs", require("./blog-route"));
-router.post("/blogs", BlogController.create);
-router.get("/blogs/:id", BlogController.getSingelBlog);
-router.put("/blogs/:id", BlogController.edit);
-router.delete("/blogs/:id", BlogController.deleteBlog);
+// router.post("/blogs", BlogController.create);
+// router.get("/blogs/:id", BlogController.getSingelBlog);
+// router.put("/blogs/:id", BlogController.edit);
+// router.delete("/blogs/:id", BlogController.deleteBlog);
 
 module.exports = router
