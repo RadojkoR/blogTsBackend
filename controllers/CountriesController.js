@@ -2,6 +2,7 @@ const db = require('../database/config');
 const multer = require("multer");
 const fs = require('fs');
 const path = require("path");
+const { log } = require('console');
 
 const storage = multer.diskStorage({
     destination: (req, file ,cd) => {
@@ -81,6 +82,8 @@ const getBlogsByCountry = async (req, res) => {
     }
     try {
         const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [countryId]);
+        console.log(blogs);
+        
         res.json({ blogs });
     } catch (error) {
         console.error("Error fetching blogs for country", error);
