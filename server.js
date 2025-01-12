@@ -19,6 +19,6 @@ app.use(express.json());
 app.use(routes)
 app.use('/images', express.static(path.join('/home/radojko/blog/public/images')));
 
-app.listen(PORT,'0.0.0.0', () => {
+https.createServer(options, app).listen(PORT,'0.0.0.0', () => {
     console.log("Listening on port 3001 ............");
 })
