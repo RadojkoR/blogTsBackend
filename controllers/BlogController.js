@@ -115,7 +115,7 @@ const getBlogsByCountry = async (req, res) => {
     console.log(id);
     
     try {
-        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id]);
+        const [post] = await db.query("SELECT * FROM blog.blog_posts WHERE country_id = ?", [id]);
         console.log("Post result:", post);
         if (post.length === 0) {
             return res.status(404).json({ message: "Blog post not found" });
