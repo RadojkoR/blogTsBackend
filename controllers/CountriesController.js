@@ -81,7 +81,7 @@ const getBlogsByCountry = async (req, res) => {
         return res.status(400).json({ message: "country_id parameter is required." });
     }
     try {
-        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [countryId]);
+        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
         console.log(blogs);
         
         res.json({ blogs });
