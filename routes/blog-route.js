@@ -3,7 +3,7 @@ const router = express.Router();
 const BlogController = require("../controllers/BlogController");
 
 router.get('/', BlogController.index);
-router.get("/:id", BlogController.getBlogsByCountry);
+router.get("/country/:id", BlogController.getBlogsByCountry);
 // Ruta za kreiranje novog bloga
 router.post("/", BlogController.create);
 
