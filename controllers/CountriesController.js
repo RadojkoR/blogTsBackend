@@ -75,7 +75,10 @@ const deleteCountry = async (req,res) => {
 };
 
 const getBlogsByCountry = async (req, res) => {
-    const { countryId } = req.query; // Uzima countryId iz query stringa
+    const { country_id } = req.query; // Uzima countryId iz query stringa
+    if (!country_id) {
+        return res.status(400).json({ message: "country_id parameter is required." });
+    }
     try {
         const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [countryId]);
         res.json({ blogs });
