@@ -112,7 +112,7 @@ const deleteBlog = async(req,res) => {
 
 const getBlogsByCountry = async (req, res) => {
     const { country_id } = req.params;
-    console.log(country_id);
+    console.log("country is", country_id);
     
     try {
         const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
