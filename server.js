@@ -6,6 +6,12 @@ const path = require('path');
 //PORT
 const PORT = process.env.PORT;
 
+// Putanja do sertifikata
+const options = {
+    cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/cert.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
+};
+
 const app = express();
 
 app.use(cors());
