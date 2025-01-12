@@ -50,7 +50,16 @@ const create = async (req,res) => {
 const deleteCountry = async (req,res) => {
     const { id }= req.params;
     try {
+        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id])
         const [result] = await db.query("DELETE FROM country WHERE country_id = ?", [id]);
+
+        if(blogs.length > 0) {
+            return res.status(200).json({
+                message: `Country has ${blogs.length} associated blog(s).`,
+                blogs: blogs, // Lista povezanih blogova
+            });
+        }
+
         if(result.affectedRows === 0){
             return res.status(404).json({message: "Country not found"});
         }
