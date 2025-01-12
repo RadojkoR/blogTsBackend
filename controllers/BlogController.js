@@ -79,6 +79,17 @@ const deleteBlog = async(req,res) => {
     }
 }
 
+const getBlogsByCountry = async (req, res) => {
+    const { countryId } = req.query; // Uzima countryId iz query stringa
+    try {
+        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [countryId]);
+        res.json({ blogs });
+    } catch (error) {
+        console.error("Error fetching blogs for country", error);
+        res.status(500).json({ message: "Database connection error" });
+    }
+};
+
 // const index = async(req,res) => {
 //     try {
 //          const [blogData] = await db.query("select * from blogs");
@@ -97,5 +108,6 @@ module.exports = {
     create,
     getSingelBlog,
     edit,
-    deleteBlog
+    deleteBlog,
+    getBlogsByCountry
 }
