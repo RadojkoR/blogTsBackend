@@ -66,7 +66,7 @@ const deleteCountry = async (req,res) => {
         res.status(204).send();
     }catch(error){
         console.error("Error Deleting Country", error);
-        res.status(500).json({message: "Database connention error"});       
+        res.status(500).json({message: "Database connention error", error: error.message});       
     };
 };
 
