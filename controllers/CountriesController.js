@@ -76,9 +76,13 @@ const deleteCountry = async (req,res) => {
 };
 
 const getBlogsByCountry = async (req, res) => {
+    // Log za proveru da li je API pozvan
+    console.log("Received request to fetch blogs by country");
+
     const { country_id } = req.query;  // Uzimamo country_id iz query stringa
 
     if (!country_id) {
+        console.log("No country_id provided");
         return res.status(400).json({ message: "country_id parameter is required." });
     }
 
@@ -99,6 +103,7 @@ const getBlogsByCountry = async (req, res) => {
         res.status(500).json({ message: "Database connection error" });
     }
 };
+
 
 module.exports = {
     index,
