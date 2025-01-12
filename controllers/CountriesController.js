@@ -75,39 +75,11 @@ const deleteCountry = async (req,res) => {
     };
 };
 
-const getBlogsByCountry = async (req, res) => {
-    // Log za proveru da li je API pozvan
-    console.log("Received request to fetch blogs by country");
 
-    const { country_id } = req.query;  // Uzimamo country_id iz query stringa
-
-    if (!country_id) {
-        console.log("No country_id provided");
-        return res.status(400).json({ message: "country_id parameter is required." });
-    }
-
-    console.log(`Fetching blogs for country_id: ${country_id}`); // Log za proveru šta dolazi u upit
-
-    try {
-        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
-
-        if (blogs.length === 0) {
-            console.log("No blogs found for this country.");
-            return res.status(404).json({ message: "No blogs found for the provided country_id." });
-        }
-
-        console.log("Blogs found:", blogs); // Log rezultata iz baze
-        res.json({ blogs });
-    } catch (error) {
-        console.error("Error fetching blogs for country", error);
-        res.status(500).json({ message: "Database connection error" });
-    }
-};
 
 
 module.exports = {
     index,
     create: [upload.single("countryImgFile"), create],
-    deleteCountry,
-    getBlogsByCountry
+    deleteCountry
 }
