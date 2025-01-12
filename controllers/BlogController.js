@@ -32,7 +32,7 @@ const create = async(req,res) => {
 const getSingelBlog = async(req,res) => {
     const {id} = req.params;
     try{
-        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id]);
+        const [post] = await db.query("SELECT * FROM blog_posts WHERE post_id = ?", [id]);
         console.log("Post result:", post);
         if(post.length === 0) {
             return res.status(404).json({message: "Blog post not found"});
