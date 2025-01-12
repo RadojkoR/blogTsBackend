@@ -84,7 +84,8 @@ const getBlogsByCountry = async (req, res) => {
     console.log("Received request to fetch blogs by country");
 
     const { country_id } = req.query;  // Uzimamo country_id iz query stringa
-
+    console.log(country_id);
+    
     if (!country_id) {
         console.log("No country_id provided");
         return res.status(400).json({ message: "country_id parameter is required." });
@@ -94,7 +95,8 @@ const getBlogsByCountry = async (req, res) => {
 
     try {
         const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
-
+        console.log(blogs);
+        
         if (blogs.length === 0) {
             console.log("No blogs found for this country.");
             return res.status(404).json({ message: "No blogs found for the provided country_id." });
