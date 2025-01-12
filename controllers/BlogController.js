@@ -32,7 +32,7 @@ const create = async(req,res) => {
 const getSingelBlog = async(req,res) => {
     const {id} = req.params;
     try{
-        const [post] = await db.query("SELECT * FROM blog_posts WHERE post_id = ?", [id]);
+        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id]);
         console.log("Post result:", post);
         if(post.length === 0) {
             return res.status(404).json({message: "Blog post not found"});
@@ -79,36 +79,53 @@ const deleteBlog = async(req,res) => {
     }
 }
 
-const getBlogsByCountry = async (req, res) => {
-    // Log za proveru da li je API pozvan
-    console.log("Received request to fetch blogs by country");
+// const getBlogsByCountry = async (req, res) => {
+//     // Log za proveru da li je API pozvan
+//     console.log("Received request to fetch blogs by country");
 
-    const { country_id } = req.query;  // Uzimamo country_id iz query stringa
-    console.log(country_id);
+//     const { country_id } = req.query;  // Uzimamo country_id iz query stringa
+//     console.log(country_id);
     
-    if (!country_id) {
-        console.log("No country_id provided");
-        return res.status(400).json({ message: "country_id parameter is required." });
-    }
+//     if (!country_id) {
+//         console.log("No country_id provided");
+//         return res.status(400).json({ message: "country_id parameter is required." });
+//     }
 
-    console.log(`Fetching blogs for country_id: ${country_id}`); // Log za proveru šta dolazi u upit
+//     console.log(`Fetching blogs for country_id: ${country_id}`); // Log za proveru šta dolazi u upit
 
-    try {
-        const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
-        console.log(blogs);
+//     try {
+//         const [blogs] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [country_id]);
+//         console.log(blogs);
         
-        if (blogs.length === 0) {
-            console.log("No blogs found for this country.");
-            return res.status(404).json({ message: "No blogs found for the provided country_id." });
-        }
+//         if (blogs.length === 0) {
+//             console.log("No blogs found for this country.");
+//             return res.status(404).json({ message: "No blogs found for the provided country_id." });
+//         }
 
-        console.log("Blogs found:", blogs); // Log rezultata iz baze
-        res.json({ blogs });
+//         console.log("Blogs found:", blogs); // Log rezultata iz baze
+//         res.json({ blogs });
+//     } catch (error) {
+//         console.error("Error fetching blogs for country", error);
+//         res.status(500).json({ message: "Database connection error" });
+//     }
+// };
+
+const getBlogsByCountry = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [post] = await db.query("SELECT * FROM blog_posts WHERE country_id = ?", [id]);
+        console.log("Post result:", post);
+        if (post.length === 0) {
+            return res.status(404).json({ message: "Blog post not found" });
+        }
+        res.json(post[0]);
+
     } catch (error) {
-        console.error("Error fetching blogs for country", error);
+        console.error("Error Fetching single blog post", error);
         res.status(500).json({ message: "Database connection error" });
+
     }
-};
+}
 
 // const index = async(req,res) => {
 //     try {
