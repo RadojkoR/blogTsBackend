@@ -83,7 +83,7 @@ const getBlogsByCountry = async (req, res) => {
     // Log za proveru da li je API pozvan
     console.log("Received request to fetch blogs by country");
 
-    const { country_id } = req.query;  // Uzimamo country_id iz query stringa
+    const { country_id } = req.params;  // Uzimamo country_id iz query stringa
     console.log(country_id);
     
     if (!country_id) {
